@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALI MOAVIA | Cybersecurity & Digital Forensics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ff9d;
+            --secondary: #00b8ff;
+            --accent: #ff00aa;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --light: #f0f0f0;
+            --gray: #333;
+            --light-gray: #444;
+            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --cyber-font: 'Orbitron', sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Dragon Animation Container */
+        #dragon-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        #dragon-animation svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            filter: sepia(20%) drop-shadow(0 0 10px rgba(0, 255, 157, 0.5));
+        }
+
+        /* Cyberpunk Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 6px;
+            border: 2px solid var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(var(--accent), var(--secondary));
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--primary);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(0, 184, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s;
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--light);
+            transition: transform 0.3s;
+        }
+
+        .hamburger:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 255, 157, 0.05) 0%, transparent 30%),
+                        radial-gradient(circle at 80% 70%, rgba(0, 184, 255, 0.05) 0%, transparent 30%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            font-family: var(--cyber-font);
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+        }
+
+        .hero-text h2 {
+            font-size: 1.8rem;
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+        }
+
+        .hero-text p {
+            margin-bottom: 2rem;
+            color: #ccc;
+            font-size: 1.1rem;
+            max-width: 90%;
+        }
+
+        .cyber-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 255, 157, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            z-index: -1;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 157, 0.3);
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            z-index: -2;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover::after {
+            opacity: 1;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 157, 0.3);
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--primary);
+            box-shadow: 0 0 40px rgba(0, 255, 157, 0.5);
+            animation: float 6s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .profile-container:hover .profile-pic {
+            transform: scale(1.05);
+        }
+
+        /* Background Elements */
+        .cyber-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 157, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 157, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+
+        .binary-code {
+            position: absolute;
+            color: rgba(0, 255, 157, 0.1);
+            font-family: monospace;
+            font-size: 1rem;
+            z-index: -1;
+            animation: scrollBinary 20s linear infinite;
+            user-select: none;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(0, 255, 157, 0.5);
+            border-radius: 50%;
+            animation: floatParticle linear infinite;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(10, 10, 10, 0.85);
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: transparent;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+            font-family: var(--cyber-font);
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .personal-info {
+            margin-top: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 3px solid var(--primary);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-item {
+            display: flex;
+            margin-bottom: 1.2rem;
+            align-items: center;
+        }
+
+        .info-item i {
+            color: var(--primary);
+            margin-right: 1.5rem;
+            width: 25px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .info-item span {
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .social-links a {
+            color: var(--light);
+            font-size: 1.8rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .social-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .social-links a:hover::after {
+            width: 100%;
+        }
+
+        .skills-chart {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .skill-item {
+            margin-bottom: 2rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            align-items: center;
+        }
+
+        .skill-name span:first-child {
+            color: var(--light);
+            font-size: 1.1rem;
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+        }
+
+        .skill-name span:last-child {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .skill-bar {
+            height: 12px;
+            background-color: var(--gray);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(0, 255, 157, 0.1) 0%, 
+                rgba(0, 184, 255, 0.1) 100%);
+            border-radius: 10px;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                transparent 50%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            animation: shine 2s infinite;
+        }
+
+        /* Education & Experience */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 3rem);
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 3rem);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-family: var(--cyber-font);
+            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
+        }
+
+        .timeline-content {
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border-left: 3px solid var(--primary);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            border-left: none;
+            border-right: 3px solid var(--primary);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 255, 157, 0.2);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .timeline-content p {
+            color: #ccc;
+            line-height: 1.7;
+        }
+
+        .timeline-content ul {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+            color: #ccc;
+        }
+
+        .timeline-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid var(--light-gray);
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(0, 255, 157, 0.05) 0%, 
+                rgba(0, 184, 255, 0.05) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 255, 157, 0.3);
+            border-color: var(--primary);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-image {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+        }
+
+        .project-info p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(0, 255, 157, 0.1);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            border: 1px solid rgba(0, 255, 157, 0.3);
+            transition: all 0.3s;
+        }
+
+        .project-tag:hover {
+            background: rgba(0, 255, 157, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .project-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+        }
+
+        .project-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .project-links a i {
+            font-size: 1.2rem;
+        }
+
+        /* Contact Form */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-left: 3px solid var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 255, 157, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            color: var(--primary);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .contact-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+        }
+
+        .contact-text p, .contact-text a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.7;
+            transition: color 0.3s;
+        }
+
+        .contact-text a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 3px solid var(--primary);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            color: var(--light);
+            font-family: var(--font);
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+        }
+
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.1rem;
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 157, 0.4);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .submit-btn:hover::before {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--light-gray);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-family: var(--cyber-font);
+            letter-spacing: 2px;
+        }
+
+        .footer-logo span {
+            color: var(--secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-family: var(--cyber-font);
+            letter-spacing: 1px;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-social a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        .project-icon i {
+             font-size: 130px; /* Increase size as needed */
+        }
+
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes flyIn {
+            0% {
+                transform: translate(200px, -200px) scale(0.5);
+                opacity: 0;
+            }
+            60% {
+                transform: translate(0, 0) scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes dragonFloat {
+            0%, 100% {
+                transform: rotate(-15deg) translateY(0);
+            }
+            50% {
+                transform: rotate(-15deg) translateY(-15px);
+            }
+        }
+
+        @keyframes wingFlap {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(10deg);
+            }
+        }
+
+        @keyframes eyeGlow {
+            0% {
+                fill: #ff0033;
+                filter: drop-shadow(0 0 5px #ff0033);
+            }
+            100% {
+                fill: #ff3366;
+                filter: drop-shadow(0 0 15px #ff3366);
+            }
+        }
+
+        @keyframes scrollBinary {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(0, 255, 157, 0.6);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-text h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text {
+                order: 1;
+            }
+
+            .hero-image {
+                order: 2;
+                margin-top: 3rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 2rem;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 4rem;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content {
+                border-right: none;
+                border-left: 3px solid var(--primary);
+            }
+
+            .hero-text p {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--darker);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 3rem;
+                transition: left 0.3s;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-text h2 {
+                font-size: 1.5rem;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .profile-container {
+                width: 280px;
+                height: 280px;
+            }
+
+            .dragon-container {
+                width: 200px;
+                height: 200px;
+                top: -50px;
+                right: -50px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-text h2 {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .skills-chart {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .timeline-content {
+                padding: 1.5rem;
+            }
+        }
+    
+    /* Skills Section */
+    .skills {
+        background-color: rgba(10, 10, 10, 0.85);
+        padding: 4rem 2rem;
+        border-radius: 15px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        max-width: 1200px;
+        margin: 0 auto 2rem auto;
+        color: var(--light);
+    }
+
+    .skills .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .skills .section-title {
+        font-size: 3rem;
+        color: transparent;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        font-family: var(--cyber-font);
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+    }
+
+    .skills .section-subtitle {
+        font-size: 1.2rem;
+        color: var(--secondary);
+        font-family: var(--cyber-font);
+        letter-spacing: 1px;
+    }
+
+    .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .skill-category {
+        flex: 1 1 45%;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 1.5rem 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 255, 157, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .skill-category:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 255, 157, 0.4);
+    }
+
+    .skill-category h3 {
+        color: var(--primary);
+        font-family: var(--cyber-font);
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .skill-list {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+        color: #ccc;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .skill-list li {
+        margin-bottom: 0.6rem;
+    }
+    </style>
+</head>
+<body>
+    <!-- Dragon Animation -->
+    <div id="dragon-animation">
+        <svg>
+            <defs>
+                <g id="Cabeza" transform="matrix(1, 0, 0, 1, 0, 0)">
+                    <path style="fill:#FFFFFF;fill-opacity:1" d="M-28.9,-1.1L-28.55 -1.95Q-28.1 -3.1 -27.25 -2.95L-26.7 -2.95Q-27.7 -1.65 -28.9 -1.1M-18.35,-1.8Q-15.1 -10.3 -9.6 -6.05Q-15.1 -6.2 -18.35 -1.8M-18.35,1.1Q-15.1 5.45 -9.6 5.35Q-15.1 9.55 -18.35 1.1M-26.7,2.2L-27.25 2.25Q-28.1 2.4 -28.55 1.2L-28.9 0.35Q-27.7 0.9 -26.7 2.2" />
+                    <path style="fill:#000000;fill-opacity:1" d="M-21.05,-8.25Q-13.6 -15.95 -1.3 -12.1Q-7.85 -8.5 -5.85 -4.35Q-2.3 -4.85 10.5 0.15Q0 4.35 -5.85 3.65Q-7.85 7.75 -1.25 12.45Q-13.6 15.2 -21.05 7.5Q-29.55 4.05 -30.2 -0.35Q-29.55 -4.8 -21.05 -8.25M-26.7,-2.95L-27.25 -2.95Q-28.1 -3.1 -28.55 -1.95L-28.9 -1.1Q-27.7 -1.65 -26.7 -2.95M-9.6,-6.05Q-15.1 -10.3 -18.35 -1.8Q-15.1 -6.2 -9.6 -6.05M-9.6,5.35Q-15.1 5.45 -18.35 1.1Q-15.1 9.55 -9.6 5.35M-28.9,0.35L-28.55 1.2Q-28.1 2.4 -27.25 2.25L-26.7 2.2Q-27.7 0.9 -28.9 0.35" />
+                </g>
+                <g id="Aletas" transform="matrix(1, 0, 0, 1, 0, 0)">
+                    <linearGradient id="LinearGradID_1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.0935974, 0, 0, 0.188782, -20.55, 0)" spreadMethod="pad" x1="-819.2" y1="0" x2="819.2" y2="0">
+                        <stop offset="0" style="stop-color:#00ff9d;stop-opacity:1" />
+                        <stop offset="1" style="stop-color:#00b8ff;stop-opacity:1" />
+                    </linearGradient>
+                    <path style="fill:url(#LinearGradID_1) " d="M29.75,-36.85Q-17.75 -61.45 -42.05 -40.95L-45.35 -38.35L-53.7 -41.15L-51.15 -44.85Q-34.85 -68.4 21 -57.8Q-32.2 -72.1 -50.25 -50Q-53.85 -45.65 -56.05 -41.95L-64.7 -43.35L-60.6 -50.3Q-45.9 -75.55 5.1 -79.35Q-2.2 -79.8 -9.45 -79.15Q-16.2 -78.55 -22.85 -77.15Q-29.85 -75.65 -36.5 -73Q-43.05 -70.4 -48.8 -66.85Q-54.55 -63.35 -56.8 -60.3L-60.5 -55.4Q-62.95 -52.1 -67 -43.55L-70.55 -43.55L-76.35 -42.95Q-74.6 -49.1 -71.85 -54.85Q-68.9 -61.25 -64.8 -67.1Q-60.8 -73 -55.45 -77.55Q-49.9 -82.35 -43.65 -85.85L-30.6 -92.7Q-24.05 -95.95 -17 -98.25Q-63.75 -86.35 -73.65 -57.1Q-75.75 -50.75 -77.45 -42.75Q-82.9 -41.75 -88 -39.65Q-87.65 -46.65 -86.3 -53.05Q-79.8 -89.8 -36.65 -117.2Q-80.65 -94.5 -87.55 -59.55Q-88.65 -54.15 -88.95 -39.4L-89.8 -38.85L-92.7 -37.6Q-93.75 -44.35 -94.1 -51.15Q-94.4 -58.2 -93.25 -65.1Q-92.15 -72.5 -90.05 -79.65Q-88.05 -86.55 -85 -93Q-82.1 -99.3 -78.45 -105.15Q-74.6 -111.35 -70.25 -117.25Q-65.95 -123.1 -61.1 -128.55Q-70.3 -119.35 -77.9 -108.7Q-86 -97.3 -90.8 -84.05Q-95.8 -70.5 -96 -56.15Q-96.1 -46 -94.05 -36.05L-93.25 -31.55Q-93.5 -35.65 -92.35 -36Q-79.85 -42 -66.6 -40.45Q-52.45 -38.85 -39.2 -33.25Q-28.3 -29.9 -21.25 -24.15Q-17.8 -23.3 -8.6 -15.6Q-12.1 -20.75 -16.75 -24.5Q-24.55 -30.7 -34.25 -34.05L-42.55 -37Q-38.9 -41.25 -31.5 -43.25Q-24.05 -45.3 -16.2 -46.3Q-8.35 -47.35 -1 -46Q5.95 -44.75 12.75 -42.85Q19.85 -40.9 29.75 -36.85M-92.45,-27.35L-94.95 -36.25Q-109.7 -105 -27.95 -154.65Q-98.65 -103.8 -91.75 -39.4L-89.95 -40.2Q-92.2 -105.25 -5.6 -130.9Q-78.8 -99.95 -87.45 -40.9Q-83.15 -42.95 -78.45 -43.95Q-70 -101.3 17.65 -103.8Q-56.9 -93.4 -74.5 -44.55L-67.4 -45.45Q-49.1 -94.95 39.25 -75.65Q-36.75 -84.35 -62.25 -44.25L-57.3 -43.6Q-31.65 -86.5 56.15 -46.05Q-20.3 -73.35 -51.35 -41.7L-45.95 -39.75Q-17.85 -71.35 51.85 -24.8Q-8.7 -56.4 -39.75 -37.05Q-28.15 -34.05 -14.25 -24.45Q-8.6 -19.85 -5.8 -16.95Q5.95 -2.4 20 0Q5.95 2.4 -5.8 16.95Q-8.6 19.85 -14.25 24.45Q-28.15 34.05 -39.75 37.05Q-8.7 56.4 51.85 24.8Q-17.85 71.35 -45.95 39.75L-51.35 41.7Q-20.3 73.35 56.15 46.1Q-31.65 86.5 -57.3 43.65L-62.25 44.3Q-36.75 84.35 39.25 75.7Q-49.1 94.95 -67.4 45.5L-74.5 44.6Q-56.9 93.4 17.65 103.85Q-70 101.3 -78.45 43.95Q-83.15 42.95 -87.45 40.9Q-78.8 99.95 -5.6 130.9Q-92.2 105.25 -89.95 40.25L-91.75 39.4Q-98.65 103.8 -27.95 154.65Q-109.7 105 -94.95 36.3L-92.45 27.35Q-93.05 33.9 -92.05 34.75Q-91.1 35.55 -88.95 36.7L-87.95 37Q-83.7 38.25 -79.05 38.8L-77.25 38.95Q-72.55 39.3 -67.5 38.85L-65.45 38.65Q-44.4 36.05 -17.8 19.6Q-9.9 12.8 -15.15 4.4Q-18.15 3.15 -19 0Q-18.15 -3.15 -15.15 -4.4Q-9.9 -12.8 -17.8 -19.6L-17.8 -19.55Q-44.4 -36.05 -65.45 -38.6L-67.5 -38.8Q-72.55 -39.3 -77.25 -38.95L-79.05 -38.75Q-83.7 -38.25 -87.95 -36.95L-88.95 -36.65Q-91.1 -35.55 -92.05 -34.7Q-93.05 -33.9 -92.45 -27.35M-8.6,15.6Q-17.8 23.3 -21.25 24.2Q-28.3 29.9 -39.2 33.3Q-52.45 38.85 -66.6 40.5Q-79.85 42 -92.35 36Q-93.5 35.65 -93.25 31.55L-94.05 36.1Q-96.1 46.05 -96 56.15Q-95.8 70.5 -90.8 84.1Q-86 97.3 -77.9 108.75Q-70.3 119.35 -61.1 128.6Q-65.95 123.1 -70.25 117.25Q-74.6 111.35 -78.45 105.15Q-82.1 99.3 -85 93Q-88.05 86.55 -90.05 79.7Q-92.15 72.5 -93.25 65.1Q-94.4 58.2 -94.1 51.2Q-93.75 44.35 -92.7 37.6L-89.8 38.9L-88.95 39.45Q-88.65 54.15 -87.55 59.55Q-80.65 94.5 -36.65 117.25Q-79.8 89.8 -86.3 53.1Q-87.65 46.65 -88 39.65Q-82.9 41.75 -77.45 42.75Q-75.75 50.75 -73.65 57.15Q-63.75 86.35 -17 98.3Q-24.05 95.95 -30.6 92.75L-43.65 85.9Q-49.9 82.35 -55.45 77.6Q-60.8 73 -64.8 67.15Q-68.9 61.25 -71.85 54.85Q-74.6 49.1 -76.35 42.95L-70.55 43.6L-67 43.6Q-62.95 52.1 -60.5 55.4L-56.8 60.35Q-54.55 63.35 -48.8 66.9Q-43.05 70.4 -36.5 73Q-29.85 75.65 -22.85 77.15Q-16.2 78.55 -9.45 79.15Q-2.2 79.8 5.1 79.35Q-45.9 75.55 -60.6 50.3L-64.7 43.4L-56.05 41.95Q-53.85 45.65 -50.25 50Q-32.2 72.1 21 57.85Q-34.85 68.4 -51.15 44.85L-53.7 41.2L-45.35 38.35L-42.05 40.95Q-17.75 61.45 29.75 36.85Q19.85 40.9 12.75 42.9Q5.95 44.75 -1 46Q-8.35 47.35 -16.2 46.35Q-24.05 45.3 -31.5 43.3Q-38.9 41.25 -42.55 37.05L-34.25 34.05Q-24.55 30.7 -16.75 24.5Q-12.1 20.75 -8.6 15.6" />
+                </g>
+                <g id="Espina" transform="matrix(1, 0, 0, 1, 0, 0)">
+                    <linearGradient id="LinearGradID_2" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.0229492, 0, 0, -0.0152893, 0, 0.05)" spreadMethod="pad" x1="-819.2" y1="0" x2="819.2" y2="0">
+                        <stop offset="0" style="stop-color:#CCCCCC;stop-opacity:1" />
+                        <stop offset="1" style="stop-color:#333333;stop-opacity:1" />
+                    </linearGradient>
+                    <path style="fill:url(#LinearGradID_2) " d="M-18.8,0Q-17.85 -5.7 -12.3 -9.6Q-11.2 -5.35 -6.5 -8.25L-6.45 -8.2L-6.2 -8.3Q1.25 -16.25 6.65 -12.4Q0.05 -12.55 0 -5.95Q2.7 -2.4 7.75 -4.1Q18 -1.45 18.8 0L-18.8 0" />
+                    <linearGradient id="LinearGradID_3" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.0229492, 0, 0, 0.0152893, 0, -0.05)" spreadMethod="pad" x1="-819.2" y1="0" x2="819.2" y2="0">
+                        <stop offset="0" style="stop-color:#CCCCCC;stop-opacity:1" />
+                        <stop offset="1" style="stop-color:#333333;stop-opacity:1" />
+                    </linearGradient>
+                    <path style="fill:url(#LinearGradID_3) " d="M18.8,0Q18 1.45 7.75 4.1Q2.7 2.4 0 5.95Q0.05 12.55 6.65 12.4Q1.25 16.25 -6.2 8.35Q-6.35 8.25 -6.45 8.25L-6.5 8.25Q-11.2 5.35 -12.3 9.6Q-17.85 5.7 -18.8 0L18.8 0" />
+                </g>
+            </defs>
+            <g id="screen" />
+        </svg>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">ALI<span>MOAVIA</span></a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="cyber-grid"></div>
+        <div class="binary-code" id="binary-code"></div>
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="cyber-badge">CYBERSECURITY SPECIALIST</span>
+                <h1>ALI MOAVIA</h1>
+                <h2>CyberSecurity & Digital Forensics </h2>
+                <p>Securing digital frontiers and uncovering cyber evidence with cutting-edge forensic techniques. Passionate about cybersecurity innovation and threat intelligence.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Contact Me
+                    </a>
+                    <a href="#" class="btn btn-secondary" id="download-cv">
+                        <i class="Ali Moavia Resume.pdf"></i> Download CV
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-container">
+                    <img src="photo.jpg" alt="ALI MOAVIA" class="profile-pic">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">Cybersecurity Specialist | Digital Forensics Expert | Ethical Hacker</p>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I am a dedicated cybersecurity professional with extensive experience in digital forensics and ethical hacking. My expertise lies in investigating cybercrimes, analyzing digital evidence, and implementing robust security measures to protect against evolving threats.</p>
+                <p>With proficiency in industry-standard tools like FTK, Autopsy, WinHex, and Belkasoft, I specialize in uncovering digital footprints and helping organizations strengthen their security posture. My approach combines technical skills with analytical thinking to solve complex cybersecurity challenges.</p>
+                <p>I'm passionate about staying at the forefront of cybersecurity innovation and continuously expanding my knowledge to combat emerging threats in our increasingly digital world.</p>
+                
+                <div class="personal-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>alimoavia80@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>03254139900</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>P/O Khar Garh, Tehsil & District Muzaffargarh, Punjab, Pakistan</span>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/ali-moavia" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/alimoavia254" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-hackerrank"></i></a>
+                </div>
+            </div>
+            <div class="skills">
+                <h3 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 2rem; font-family: var(--cyber-font); letter-spacing: 1px;">Technical Skills</h3>
+                <div class="skills-chart">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Digital Forensics</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Ethical Hacking</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Python</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Network Security</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Linux Administration</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Web Security</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="languages" style="margin-top: 3rem;">
+                    <h3 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 1.5rem; font-family: var(--cyber-font); letter-spacing: 1px;">Languages</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>English</span>
+                            <span>★★★☆☆</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Urdu</span>
+                            <span>★★★★☆</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="section-header">
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="section-subtitle">Expertise in Cybersecurity & Digital Forensics</p>
+        </div>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Forensic Analysis</h3>
+                <ul class="skill-list">
+                    <li>FTK Forensic Toolkit</li>
+                    <li>Belkasoft Evidence Center</li>
+                    <li>WinHex Data Recovery</li>
+                    <li>Autopsy Digital Forensics</li>
+                    <li>Linux Forensic Analysis</li>
+                    <li>Android Forensic Techniques</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Programming</h3>
+                <ul class="skill-list">
+                    <li>Python (Advanced)</li>
+                    <li>C++</li>
+                    <li>C</li>
+                    <li>Bash Scripting</li>
+                    <li>Automation Scripts</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Networking & Security</h3>
+                <ul class="skill-list">
+                    <li>Network Security</li>
+                    <li>Cisco Technologies</li>
+                    <li>Nmap Network Scanning</li>
+                    <li>Network Configuration</li>
+                    <li>Information Privacy</li>
+                    <li>Threat Detection</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Cybersecurity</h3>
+                <ul class="skill-list">
+                    <li>Ethical Hacking</li>
+                    <li>Dark Web Investigations</li>
+                    <li>Penetration Testing</li>
+                    <li>Vulnerability Assessment</li>
+                    <li>Incident Response</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <h2 class="section-title">Education</h2>
+        <p class="section-subtitle">My Academic Journey in Cybersecurity</p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2021 - 2025</div>
+                <div class="timeline-content">
+                    <h3>BS Cybersecurity & Digital Forensics</h3>
+                    <h4>Islamia University of Bahawalpur</h4>
+                    <p>Specialized in digital forensics and cybersecurity with hands-on experience in various forensic tools and techniques.</p>
+                    <ul>
+                        <li>FTK Forensic Toolkit</li>
+                        <li>Autopsy Digital Forensics</li>
+                        <li>WinHex Data Recovery</li>
+                        <li>Belkasoft Evidence Center</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2019 - 2021</div>
+                <div class="timeline-content">
+                    <h3>ICS</h3>
+                    <h4>Muslim Group of Schools & Colleges, Multan</h4>
+                    <p>Completed intermediate studies with focus on computer science and mathematics.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2016 - 2018</div>
+                <div class="timeline-content">
+                    <h3>Matric</h3>
+                    <h4>Govt. High School, Khangarh</h4>
+                    <p>Completed secondary education with distinction in science subjects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <h2 class="section-title">Experience</h2>
+        <p class="section-subtitle">Professional Journey & Achievements</p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2024 - Present</div>
+                <div class="timeline-content">
+                    <h3>Cybersecurity Intern</h3>
+                    <h4>Punjab Police, Civil Lines Station Bahawalpur</h4>
+                    <ul aligin="left">
+                       <li>Gained hands-on experience in law enforcement operations and criminal justice system processes</li>
+                        <li>Developed skills in law enforcement awareness and criminal justice system overview</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2022 - Present</div>
+                <div class="timeline-content">
+                    <h3>Freelance Cybersecurity Consultant</h3>
+                    <h4>Digital Forensics & Security Services</h4>
+                    <p>Providing cybersecurity solutions and digital forensic services to various clients.</p>
+                    <ul>
+                        <li>Completed 20+ digital forensic cases</li>
+                        <li>Conducted 15+ security audits for businesses</li>
+                        <li>Delivered 50+ cybersecurity training sessions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 6rem;">
+            <h3 class="section-title" style="font-size: 2.5rem; margin-bottom: 2rem;">Certifications</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem;">
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Networking Devices and Initial Configuration</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">Cisco Networking Academy, Oct 2024</p>
+                    <p style="color: #ccc;">Comprehensive training on networking devices and initial configuration.</p>
+                </div>
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Belkasoft Android Forensic</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">Belkasoft, Mar 2024</p>
+                    <p style="color: #ccc;">Mobile device forensic analysis and evidence extraction.</p>
+                </div>
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Cyber Forensic</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">GreatLearning, Feb 2024</p>
+                    <p style="color: #ccc;">Comprehensive digital forensic investigation techniques.</p>
+                </div>
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Digital Forensics Examiner</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">Alison, Feb 2024</p>
+                    <p style="color: #ccc;">Professional certification in digital evidence handling.</p>
+                </div>
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Digital Forensic Essential</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">EC-Council, Jul 2023</p>
+                    <p style="color: #ccc;">Fundamentals of digital forensic investigation.</p>
+                </div>
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Ethical Hacking Essential</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">EC-Council, Jul 2023</p>
+                    <p style="color: #ccc;">Core concepts and techniques in ethical hacking.</p>
+                </div>
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Nmap</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">MindLuster, Jul 2023</p>
+                    <p style="color: #ccc;">Network scanning and security auditing using Nmap.</p>
+                </div>
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Understanding Bash Scripting</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">Alison, Jun 2023</p>
+                    <p style="color: #ccc;">Basics of Bash scripting for automation and system management.</p>
+                </div>
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Basic Networking for Cisco Certified Network Professional Routing and Switching 300-101 ROUTE</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">Cisco, Feb 2023</p>
+                    <p style="color: #ccc;">Networking fundamentals for Cisco CCNP Routing and Switching.</p>
+                </div>
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Dark Web Anonymity and Cryptocurrency</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">EC-Council Learning, Jan 2023</p>
+                    <p style="color: #ccc;">Understanding anonymity and cryptocurrency in the dark web.</p>
+                </div>
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Introduction to Cybersecurity</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">Cisco, Nov 2022</p>
+                    <p style="color: #ccc;">Fundamental concepts of cybersecurity.</p>
+                </div>
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Introduction to Programming Using Python</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">Sololearn, Aug 2022</p>
+                    <p style="color: #ccc;">Basic programming concepts using Python.</p>
+                </div>
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Ethical Hacking for Beginners</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">Simplilearn, Mar 2022</p>
+                    <p style="color: #ccc;">Introduction to ethical hacking principles and techniques.</p>
+                </div>
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); transition: all 0.3s;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px;">Introduction to Programming Using HTML and CSS</h4>
+                    <p style="color: var(--secondary); margin-bottom: 1rem;">Sololearn, May 2020</p>
+                    <p style="color: #ccc;">Basics of web development with HTML and CSS.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 6rem;">
+            <h3 class="section-title" style="font-size: 2.5rem; margin-bottom: 2rem;">Awards</h3>
+            <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 3px solid var(--primary); max-width: 800px; transition: all 0.3s;">
+                <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: var(--cyber-font); letter-spacing: 1px; font-size: 1.5rem;">Best Project Award</h4>
+                <p style="color: var(--secondary); margin-bottom: 1rem;">IEEE ComSoc UCET IUB, Jan 2024</p>
+                <p style="color: #ccc; line-height: 1.7;">Awarded for developing an innovative cybersecurity tool that demonstrates exceptional technical skill and practical application in digital forensics.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="section-header">
+            <h2 class="section-title">My Projects</h2>
+            <p class="section-subtitle">Innovative Cybersecurity Solutions</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <div class="project-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>Portable Forensic Analysis Tool (PFAT)</h3>
+                    <p>Developed a Python-based forensic tool with Tkinter GUI, using psutil and scikit-learn for artifact analysis across platforms. Achieved 95% evidence recovery rate and earned top honors at university hackathon.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Tkinter</span>
+                        <span class="project-tag">scikit-learn</span>
+                        <span class="project-tag">Forensics</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/alimoavia254/Portable-forensic-analyst-tool" target="_blank"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <div class="project-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>SpoofHawk: Email Spoofing Detection Tool</h3>
+                    <p>Built a Python-based tool with Tkinter GUI, leveraging Random Forest and synthetic data to detect email spoofing via SPF/DKIM. Improved detection accuracy by 20% with real-time monitoring.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Email Security</span>
+                        <span class="project-tag">DMARC</span>
+                        <span class="project-tag">SPF</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <div class="project-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>AMN-DOS: Network Stress Testing Tool</h3>
+                    <p>Created a Python-based tool for ethical DDoS simulation using HTTP flood, Slowloris, and TCP SYN flood techniques. Enhanced network resilience testing for cybersecurity education.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Networking</span>
+                        <span class="project-tag">Penetration Testing</span>
+                        <span class="project-tag">Security</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/alimoavia254/AMN_DOS" target="_blank"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <p class="section-subtitle">Get in touch for cybersecurity services</p>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Email</h3>
+                        <a href="mailto:alimoavia80@gmail.com">alimoavia80@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Phone</h3>
+                        <a href="tel:+923254139900">03254139900</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Location</h3>
+                        <p>P/O Khar Garh, Tehsil & District Muzaffargarh, Punjab, Pakistan</p>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>LinkedIn</h3>
+                        <a href="https://linkedin.com/in/ali-moavia" target="_blank">linkedin.com/in/ali-moavia</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>GitHub</h3>
+                        <a href="https://github.com/alimoavia254" target="_blank">github.com/alimoavia254</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <a href="#" class="footer-logo">ALI<span>MOAVIA</span></a>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#education">Education</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://linkedin.com/in/ali-moavia" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/alimoavia254" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-hackerrank"></i></a>
+            </div>
+            <p class="copyright">© 2024 ALI MOAVIA. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dragon Animation Script
+        const dragonAnimation = () => {
+            const screen = document.querySelector('#dragon-animation #screen');
+            const xmlns = "http://www.w3.org/2000/svg";
+            const xlinkns = "http://www.w3.org/1999/xlink";
+
+            const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+            let width = window.innerWidth;
+            let height = window.innerHeight;
+            let rad = 0;
+            let frm = Math.random();
+
+            window.addEventListener(
+                "pointermove",
+                (e) => {
+                    pointer.x = e.clientX;
+                    pointer.y = e.clientY;
+                    rad = 0;
+                },
+                false
+            );
+
+            const resize = () => {
+                width = window.innerWidth;
+                height = window.innerHeight;
+            };
+
+            window.addEventListener("resize", () => resize(), false);
+            resize();
+
+            const prepend = (use, i) => {
+                const elem = document.createElementNS(xmlns, "use");
+                elems[i].use = elem;
+                elem.setAttributeNS(xlinkns, "xlink:href", "#" + use);
+                screen.prepend(elem);
+            };
+
+            const N = 40;
+            const elems = [];
+            for (let i = 0; i < N; i++) elems[i] = { use: null, x: width / 2, y: height / 2 };
+            const radm = Math.min(pointer.x, pointer.y) - 20;
+
+            for (let i = 1; i < N; i++) {
+                if (i === 1) prepend("Cabeza", i);
+                else if (i === 8 || i === 14) prepend("Aletas", i);
+                else prepend("Espina", i);
+            }
+
+            const run = () => {
+                requestAnimationFrame(run);
+                let e = elems[0];
+                const ax = (Math.cos(3 * frm) * rad * width) / height;
+                const ay = (Math.sin(4 * frm) * rad * height) / width;
+                e.x += (ax + pointer.x - e.x) / 10;
+                e.y += (ay + pointer.y - e.y) / 10;
+                for (let i = 1; i < N; i++) {
+                    let e = elems[i];
+                    let ep = elems[i - 1];
+                    const a = Math.atan2(e.y - ep.y, e.x - ep.x);
+                    e.x += (ep.x - e.x + (Math.cos(a) * (100 - i)) / 5) / 4;
+                    e.y += (ep.y - e.y + (Math.sin(a) * (100 - i)) / 5) / 4;
+                    const s = (162 + 4 * (1 - i)) / 50;
+                    e.use.setAttributeNS(
+                        null,
+                        "transform",
+                        `translate(${(ep.x + e.x) / 2},${(ep.y + e.y) / 2}) rotate(${
+                            (180 / Math.PI) * a
+                        }) translate(${0},${0}) scale(${s},${s})`
+                    );
+                }
+                if (rad < radm) rad++;
+                frm += 0.003;
+                if (rad > 60) {
+                    pointer.x += (width / 2 - pointer.x) * 0.05;
+                    pointer.y += (height / 2 - pointer.y) * 0.05;
+                }
+            };
+
+            run();
+        };
+
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Generate binary code animation
+        const binaryContainer = document.getElementById('binary-code');
+        const binaryChars = '01';
+        let binaryContent = '';
+
+        for (let i = 0; i < 200; i++) {
+            let line = '';
+            for (let j = 0; j < 50; j++) {
+                line += binaryChars.charAt(Math.floor(Math.random() * binaryChars.length));
+            }
+            binaryContent += line + '<br>';
+        }
+
+        binaryContainer.innerHTML = binaryContent;
+
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random size between 1px and 3px
+            const size = Math.random() * 2 + 1;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random position
+            particle.style.left = `${Math.random() * 100}%`;
+            
+            // Random animation duration between 10s and 20s
+            const duration = Math.random() * 10 + 10;
+            particle.style.animationDuration = `${duration}s`;
+            
+            // Random delay
+            particle.style.animationDelay = `${Math.random() * 10}s`;
+            
+            particlesContainer.appendChild(particle);
+        }
+
+        // Animate skills on scroll
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const animateSkills = () => {
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        };
+
+        // Download CV button
+        document.getElementById('download-cv').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('CV download functionality would be implemented here. For now, please contact me directly for my resume.');
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            e.target.reset();
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('skills-chart')) {
+                        animateSkills();
+                    }
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.skills-chart, .project-card, .timeline-item, .contact-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize dragon animation
+        dragonAnimation();
+    </script>
+</body>
+</html>
